@@ -18,7 +18,11 @@
 		var	aShapeColor = new Array(cNumShapes);
 		var	UnitWidth =  canvas.clientWidth / (Math.SQRT2 * cXunits);	// Calculate the unit width.
 		var	UnitHeight = (canvas.clientWidth / (Math.SQRT2 * cXunits)) / Math.SQRT2; // Calculate the unit height.
-        init();
+		
+		var imgLandscape = new Image();
+		var imgPortrait = new Image();
+		
+        //init();
 
         function init() 
         {
@@ -27,7 +31,19 @@
 			InitializeShapes();
 			DoRectangles();
         }
+		
+		// Test
+		imgLandscape.onload = function(){
+			imgPortrait.src = "http://lh4.ggpht.com/-LIrW1Q2iCis/T3oEYMlxuXI/AAAAAAAAk-c/OWUecFqStYM/_MG_5012-2.jpg?imgmax=1280";
+		};
+		
+		imgPortrait.onload = function(){
+			init();
+		};
         
+		//imgLandscape.src = "http://lh6.ggpht.com/-HG8a8yDR7ik/T3oEWUQeaOI/AAAAAAAAk-Q/o3lGDbJ4TjI/_MG_5012.jpg?imgmax=1280";
+		imgLandscape.src = "http://farmeu.static.viewbook.com/1/8635978_54d54b4eb82c527c86d262487e5f6c28_b.jpg"
+		
         // Init Grid bit values 
         function InitializeGrid()
 		{
@@ -73,8 +89,10 @@
 					console.log( ' !WillShapeFit = ' + s ); 
 					s = Math.ceil(Math.random() * cNumShapes );
 				}
+				
 				SetShape( o, s );
-				DrawShape( o, s );
+				//DrawShape( o, s );
+				DrawImage( o, s );
 				o = GetOffSet();
 			}
 		}
@@ -99,7 +117,7 @@
 			// The shape will not fitt the width, from this offset
 			if( ((offset % cXunits) + aShapeWidth[shape]) > cXunits )
 			{
-				console.log( 'WillShapeFit offset = ' + offset + ' shape = ' + shape + ' FALSE' );
+				console.log( 'WillShapeFit offset = ' + offset + ' cXunits = ' + cXunits + ' shape = ' + shape + ' FALSE' );
 				return false;
 			}
 			// Now check for overlapping shapes from an erlier row.
@@ -131,6 +149,8 @@
 		function DrawShape( offset, shape )
 		{
 			var x, y, w, h;
+			
+			console.log( 'DrawShape offset = ' + offset + ' shape = ' + shape );
 					
 			y = UnitHeight * Math.floor( offset / cXunits );
 			x = UnitWidth * (offset % cXunits);
@@ -139,6 +159,26 @@
 					
 			context.fillStyle = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 			context.fillRect(x,y,w,h);
+		}
+		
+		function DrawImage( offset, shape )
+		{
+			var x, y, w, h;
+			var imageObj;
+			
+			console.log( 'DrawImage offset = ' + offset + ' shape = ' + shape );
+			
+			if( aShapeOrientation[shape] == 'L' )
+				imageObj = imgLandscape;
+			else
+				imageObj = imgPortrait;				
+					
+			y = UnitHeight * Math.floor( offset / cXunits );
+			x = UnitWidth * (offset % cXunits);
+			w = aShapeWidth[shape] * UnitWidth;
+			h = aShapeHeight[shape] * UnitHeight;
+
+			context.drawImage(imageObj, 0, 0, imageObj.width, imageObj.height, x, y, w, h);
 		}
     }
     $.fn.sqrtGrid = function (options) 
