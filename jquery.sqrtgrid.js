@@ -7,7 +7,7 @@
         var	canvas = $("#myCanvas").get(0);
 		var context = canvas.getContext("2d");
         var self = this;
-        var cXunits = this.settings.xunits; 									// Number of units that will fit horizontally
+        var cXunits = this.settings.xunits; 				// Number of units that will fit horizontally
 		var cYunits = this.settings.yunits;
 		var cGridSize = cXunits * cYunits; 					// Total number of units in de image grid.
 		var	cNumShapes = 7;									// Number of units that will fit horizontally
@@ -140,32 +140,6 @@
 			context.fillStyle = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 			context.fillRect(x,y,w,h);
 		}
-/*
-        this.nextPanel = nextPanel;
-        this.previousPanel = previousPanel;
-        this.openPanel = openPanel;
-        this.startSlideshow = function () {
-            startSlideshow();
-        };
-        this.stopSlideshow = function () {
-            stopSlideshow();
-        };
-        this.getSlideshowState = function () {
-            return slideshowState;
-        };
-        this.getCurrentIndex = function () {
-            return currentIndex;
-        };
-        this.getPanelAt = function (index) {
-            return panels[index];
-        };
-        this.getAccordionState = function () {
-            return accordionState;
-        };
-        this.resize = function (w, h) {
-            resize(w, h);
-        };
-*/        
     }
     $.fn.sqrtGrid = function (options) 
     {
