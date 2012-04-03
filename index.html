@@ -2,10 +2,22 @@
 <html>
     <head>
     	<title>Square Root grid</title>
+    	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    	<script type="text/javascript" src="jquery.sqrtgrid.js"></script>
+    	<link rel="stylesheet" type="text/css" href="sqrtgrid.css">
         <script>
+        $(window).load(function() 
+		{
+    		$('#photos').superGrid(
+    		{
+    			xunits: 5,
+    			yunits: 20
+    		});
+		});
         </script>
 	</head>
 	<body>
+		<canvas id="myCanvas" width="1200" height="2000"></canvas>
 		<section id="photos">
     		<ul class="supergrid">
         		<li><img src="http://placehold.it/226x320"/></li>
@@ -30,6 +42,6 @@
         		<li><img src="http://placehold.it/320x226"></li>
 			</ul>
 		</section>
-		<canvas id="myCanvas" width="800" height="8000"></canvas>
+
 	</body>
 </html>

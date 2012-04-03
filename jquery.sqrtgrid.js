@@ -3,23 +3,22 @@
     function SuperGrid(instance, options) // class defenition
     {
         this.settings = $.extend({}, $.fn.superGrid.defaults, options);
-        var supergrid = 
-        	$(instance),
-        	canvas = $("#myCanvas").get(0),
-			context = canvas.getContext("2d"),
-            self = this,
-            cXunits = 10, 									// Number of units that will fit horizontally
-			cYunits = 200,
-			cGridSize = cXunits * cYunits, 					// Total number of units in de image grid.
-			cNumShapes = 7,									// Number of units that will fit horizontally
-			aBitGrid = new Array(cGridSize), 				// This array is a binary linear representation of the image grid.
-			aShapeOrientation = new Array(cNumShapes),		// Shapes, where 0 is the smallest shape size.
-			aShapeWidth = new Array(cNumShapes),
-			aShapeHeight = new Array(cNumShapes),
-			aShapeColor = new Array(cNumShapes),
-			UnitWidth =  $(instance).clientWidth / (Math.SQRT2 * cXunits),	// Calculate the unit width.
-			UnitHeight = ($(instance).clientWidth / (Math.SQRT2 * cXunits)) / Math.SQRT2; // Calculate the unit height.
-        	init();
+        var supergrid = $(instance);
+        var	canvas = $("#myCanvas").get(0);
+		var context = canvas.getContext("2d");
+        var self = this;
+        var cXunits = this.settings.xunits; 									// Number of units that will fit horizontally
+		var cYunits = this.settings.yunits;
+		var cGridSize = cXunits * cYunits; 					// Total number of units in de image grid.
+		var	cNumShapes = 7;									// Number of units that will fit horizontally
+		var	aBitGrid = new Array(cGridSize); 				// This array is a binary linear representation of the image grid.
+		var	aShapeOrientation = new Array(cNumShapes);		// Shapes, where 0 is the smallest shape size.
+		var	aShapeWidth = new Array(cNumShapes);
+		var	aShapeHeight = new Array(cNumShapes);
+		var	aShapeColor = new Array(cNumShapes);
+		var	UnitWidth =  canvas.clientWidth / (Math.SQRT2 * cXunits);	// Calculate the unit width.
+		var	UnitHeight = (canvas.clientWidth / (Math.SQRT2 * cXunits)) / Math.SQRT2; // Calculate the unit height.
+        init();
 
         function init() 
         {
@@ -184,9 +183,10 @@
         return collection.length > 1 ? collection : collection[0];
     };
     
-    $.fn.superGriddefaults = {
-        cXunits: 20,
-        cYunits: 200,
+    $.fn.superGrid.defaults = 
+    {
+        xunits: 10,
+        yunits: 200,
         cNumShapes: 7
     };
 })(jQuery);
