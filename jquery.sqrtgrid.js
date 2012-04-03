@@ -1,8 +1,8 @@
 (function ($) 
 {
-    function SuperGrid(instance, options) // class defenition
+    function SQRTGrid(instance, options) // class defenition
     {
-        this.settings = $.extend({}, $.fn.superGrid.defaults, options);
+        this.settings = $.extend({}, $.fn.sqrtGrid.defaults, options);
         var supergrid = $(instance);
         var	canvas = $("#myCanvas").get(0);
 		var context = canvas.getContext("2d");
@@ -167,23 +167,23 @@
         };
 */        
     }
-    $.fn.superGrid = function (options) 
+    $.fn.sqrtGrid = function (options) 
     {
         var collection = [];
         console.log('accessing instance');
         for (var i = 0; i < this.length; i++) 
         {
-            if (!this[i].superGrid) 
+            if (!this[i].sqrtGrid) 
             {
             	console.log('creating new instance');
-                this[i].superGrid = new SuperGrid(this[i], options);
-                collection.push(this[i].superGrid);
+                this[i].sqrtGrid = new SQRTGrid(this[i], options);
+                collection.push(this[i].sqrtGrid);
             }
         }
         return collection.length > 1 ? collection : collection[0];
     };
     
-    $.fn.superGrid.defaults = 
+    $.fn.sqrtGrid.defaults = 
     {
         xunits: 10,
         yunits: 200,
