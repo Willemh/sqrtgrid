@@ -168,7 +168,7 @@
 		// y = y-position
 		// w = width of element
 		// h = Height of element
-		function DrawElements(elements)
+		function PlaceAndScaleElements(elements)
 		{
 			
 		}
