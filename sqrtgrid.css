@@ -8,4 +8,11 @@ li
 	float: left;
 }
 
+#myCanvas
+{
+	width: 1200px;
+	height: 800px;
+}
+
+
 

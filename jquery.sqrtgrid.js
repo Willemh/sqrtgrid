@@ -161,6 +161,18 @@
 			context.fillRect(x,y,w,h);
 		}
 		
+		/* interfacepoint */
+		// passes an array of elements that will be shown
+		// each element contains the following variables
+		// x = x-position
+		// y = y-position
+		// w = width of element
+		// h = Height of element
+		function DrawElements(elements)
+		{
+			
+		}
+		
 		function DrawImage( offset, shape )
 		{
 			var x, y, w, h;
