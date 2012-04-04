@@ -3,7 +3,7 @@
     function SQRTGrid(instance, options) // class defenition
     {
         this.settings = $.extend({}, $.fn.sqrtGrid.defaults, options);
-        var supergrid = $(instance);
+        var instance = $(instance);
         var	canvas = $("#myCanvas").get(0);
 		var context = canvas.getContext("2d");
         var self = this;
@@ -18,14 +18,30 @@
 		var	aShapeColor = new Array(cNumShapes);
 		var	UnitWidth =  canvas.clientWidth / (Math.SQRT2 * cXunits);	// Calculate the unit width.
 		var	UnitHeight = (canvas.clientWidth / (Math.SQRT2 * cXunits)) / Math.SQRT2; // Calculate the unit height.
+		
+		/* handle the real image stuff here */
+		
+		var elements = new Array(); 
+		
         init();
 
         function init() 
         {
-        	console.log('init supergrid');
+        	console.log('init SQRTGrid');
+        	getelements();
         	InitializeGrid();
 			InitializeShapes();
 			DoRectangles();
+        }
+        
+        function getelements()
+        {
+        	$(instance).find('li').each(function(i) 
+			{
+				//var ih = parseInt($(this).css('height'));
+				//var iw = parseInt($(this).css('width'));
+				elements.push(i);
+			});
         }
         
         // Init Grid bit values 
