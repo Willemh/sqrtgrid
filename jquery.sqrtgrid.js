@@ -27,8 +27,10 @@
         function init() 
         {
         	console.log('init supergrid');
+        	
         	InitializeGrid();
 			InitializeShapes();
+			PlaceAndScaleElements(getelements());
 			DoRectangles();
         }
 		
@@ -43,6 +45,40 @@
         
 		//imgLandscape.src = "http://lh6.ggpht.com/-HG8a8yDR7ik/T3oEWUQeaOI/AAAAAAAAk-Q/o3lGDbJ4TjI/_MG_5012.jpg?imgmax=1280";
 		imgLandscape.src = "http://farmeu.static.viewbook.com/1/8635978_54d54b4eb82c527c86d262487e5f6c28_b.jpg"
+		
+		/* getters and setters */
+		
+		
+		
+		function Element(e)
+		{
+			var element=e;
+			$(element).css('position', 'absolute');	// force absolute positioning on to the elements 
+			
+			this.__defineGetter__("x", function()		{return $(element).css('left');		});
+       		this.__defineSetter__("x", function(val)	{  		$(element).css('left',val);	});
+       		this.__defineGetter__("y", function()		{return $(element).css('top');		});
+       		this.__defineSetter__("y", function(val)	{  		$(element).css('top', val);	});
+       		this.__defineGetter__("w", function()		{return $(element).css('width');	});
+       		this.__defineSetter__("w", function(val)	{  		$(element).css('width',val);});
+       		this.__defineGetter__("h", function()		{return $(element).css('height')	;});
+       		this.__defineSetter__("h", function(val)	{  		$(element).css('height',val);});
+       		
+       		this.__defineGetter__("element", function()		{return element;});
+       		this.__defineSetter__("element", function(val)	{element = val});
+		}
+		
+		function getelements()
+		{
+			var elements= new Array();
+			$(instance).find('li').each(function(index, element)
+			{
+				e = new Element(element);
+				elements.push(e);
+				
+			});
+			return elements;
+		}
 		
         // Init Grid bit values 
         function InitializeGrid()
@@ -170,6 +206,15 @@
 		// h = Height of element
 		function PlaceAndScaleElements(elements)
 		{
+			console.log('place and scale');
+			$(elements).each(function(index, element)
+			{
+				element.x = 100 * index;	// just to show how to use the setters for x
+				element.y = 100 * index;	// just to show how to use the setters for y
+				e = element.element;
+				$(e).css('border','solid #000 4px');	// just to show how to manipulate the object
+				
+			});
 			
 		}
 		
